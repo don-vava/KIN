@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>KIN - Connexion</title>
+</head>
+<body class="bg-white h-screen flex flex-col items-center justify-center font-['Plus_Jakarta_Sans']">
+    <a href="accueil.html" class="absolute top-10 left-10 text-[10px] font-black uppercase tracking-widest text-gray-300 hover:text-black transition">← Retour à l'accueil</a>
+
+    <div class="w-full max-w-md text-center p-8">
+        <img src="logo.jpeg" alt="Logo KIN" class="w-24 h-24 mx-auto mb-6 rounded-3xl shadow-2xl transition-transform hover:scale-105">
+        <h1 class="text-3xl font-black italic tracking-tighter uppercase mb-2">KIN</h1>
+        <p class="text-gray-400 text-sm mb-10 italic">Accédez à votre console de certification</p>
+        
+        <form class="space-y-4 text-left">
+            <input type="email" class="w-full p-4 rounded-2xl bg-gray-50 border border-gray-100 outline-none focus:border-yellow-400 focus:bg-white transition-all" placeholder="Email">
+            <input type="password" class="w-full p-4 rounded-2xl bg-gray-50 border border-gray-100 outline-none focus:border-yellow-400 focus:bg-white transition-all" placeholder="Mot de passe">
+            <button type="button" onclick="window.location.href='dashboard.html'" class="w-full py-4 bg-[#FFC107] rounded-2xl font-black uppercase text-sm shadow-xl shadow-yellow-100 hover:brightness-105 active:scale-95 transition-all">Se connecter</button>
+        </form>
+    </div>
+</body>
+</html>

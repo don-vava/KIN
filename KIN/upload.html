@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>KIN | Upload Prestige</title>
+    <style>
+        :root {
+            --kin-sand-gold: #E5B567;
+            --kin-dark-panel: #14141B;
+        }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #ffffff;
+            color: #111118;
+        }
+        
+        /* Arrière-plan premium identique à l'accueil */
+        .bg-premium {
+            background: radial-gradient(circle at 0% 0%, rgba(229, 181, 103, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 100% 100%, rgba(229, 181, 103, 0.05) 0%, transparent 40%);
+        }
+
+        /* Barre latérale et navigation */
+        .nav-link:hover { background: rgba(229, 181, 103, 0.1); color: #111118; }
+        .nav-active { background: var(--kin-sand-gold) !important; color: #000000 !important; font-weight: 800; shadow: 0 4px 15px rgba(229, 181, 103, 0.3); }
+
+        /* Zone d'upload style sombre des captures */
+        .drop-zone {
+            background-color: var(--kin-dark-panel);
+            border: 2px dashed rgba(229, 181, 103, 0.3);
+            transition: all 0.4s ease;
+        }
+        .drop-zone:hover {
+            border-color: var(--kin-sand-gold);
+            transform: scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Blocs informatifs bas */
+        .info-card {
+            background-color: var(--kin-dark-panel);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            border-color: var(--kin-sand-gold);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen bg-premium">
+
+    <aside class="w-72 bg-white/70 backdrop-blur-xl border-r border-stone-100 p-8 flex flex-col fixed h-full z-50">
+        <div class="mb-12 flex items-center gap-3">
+            <img src="logo.jpeg" alt="Logo KIN" class="w-10 h-10 rounded-xl shadow-sm">
+            <span class="text-2xl font-black italic tracking-tighter uppercase">KIN</span>
+        </div>
+        <nav class="space-y-3 flex-grow text-[11px] font-black uppercase tracking-widest text-stone-400">
+            <a href="dashboard.html" class="nav-link flex items-center p-4 rounded-xl transition-all">Tableau de bord</a>
+            <a href="upload.html" class="nav-active flex items-center p-4 rounded-xl transition-all">Upload</a>
+            <a href="certification.html" class="nav-link flex items-center p-4 rounded-xl transition-all">Certification</a>
+            <a href="abonnements.html" class="nav-link flex items-center p-4 rounded-xl transition-all">Abonnements</a>
+        </nav>
+        <div class="mt-auto border-t border-stone-100 pt-8 flex items-center gap-4 text-stone-900">
+            <div class="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center font-bold">JD</div>
+            <div>
+                <p class="text-sm font-black italic">John Doe</p>
+                <p class="text-[9px] uppercase tracking-widest font-bold opacity-40 italic">Pro Member</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="ml-72 p-16 w-full">
+        <header class="mb-16">
+            <h1 class="text-4xl font-black italic tracking-tight uppercase mb-2">Upload d'images</h1>
+            <p class="text-stone-400 font-medium italic">Importez vos photos pour certification blockchain haute fidélité.</p>
+        </header>
+
+        <div id="drop-zone" class="drop-zone rounded-[40px] p-24 text-center cursor-pointer mb-16 relative overflow-hidden group">
+            <div class="bg-[#E5B567] w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-yellow-900/20 group-hover:scale-110 transition-transform">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+            </div>
+            <h2 id="upload-title" class="text-3xl font-black italic mb-3 uppercase tracking-tighter text-white">Glissez vos images ici</h2>
+            <p class="text-stone-500 font-medium italic mb-8">ou cliquez pour sélectionner des fichiers sur votre appareil</p>
+            <p class="text-[10px] font-black text-[#E5B567] uppercase tracking-[0.2em] opacity-80">Formats supportés: JPG, PNG, RAW, TIFF • Taille max: 50 MB</p>
+            
+            <input type="file" id="file-input" class="hidden" onchange="handleUpload()">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="info-card p-10 rounded-[2.5rem] text-center">
+        
+                <h3 class="text-white font-black italic uppercase tracking-tighter mb-4 italic">Formats RAW</h3>
+                <p class="text-stone-500 text-xs leading-relaxed italic">Prise en charge complète des métadonnées RAW pour une preuve absolue.</p>
+            </div>
+            <div class="info-card p-10 rounded-[2.5rem] text-center border-stone-700/50">
+              
+                <h3 class="text-white font-black italic uppercase tracking-tighter mb-4 italic">Certification rapide</h3>
+                <p class="text-stone-500 text-xs leading-relaxed italic">Processus d'ancrage instantané sur les registres décentralisés.</p>
+            </div>
+            <div class="info-card p-10 rounded-[2.5rem] text-center">
+                
+                <h3 class="text-white font-black italic uppercase tracking-tighter mb-4 italic">Upload sécurisé</h3>
+                <p class="text-stone-500 text-xs leading-relaxed italic">Transfert chiffré de bout en bout pour garantir votre confidentialité.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const uploadTitle = document.getElementById('upload-title');
+
+        dropZone.onclick = () => fileInput.click();
+
+        function handleUpload() {
+            uploadTitle.innerHTML = "Analyse de l'Authenticité... <span class='animate-pulse text-[#E5B567]'>●</span>";
+            setTimeout(() => {
+                window.location.href = 'certification.html';
+            }, 2000);
+        }
+
+        // Support du Drag & Drop visuel
+        dropZone.ondragover = (e) => { e.preventDefault(); dropZone.style.borderColor = "#E5B567"; };
+        dropZone.ondragleave = () => { dropZone.style.borderColor = "rgba(229, 181, 103, 0.3)"; };
+        dropZone.ondrop = (e) => { e.preventDefault(); handleUpload(); };
+    </script>
+</body>
+</html>
